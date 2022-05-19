@@ -1,3 +1,24 @@
+function DownloadWithRetry([string] $Url, [string] $OutFile, [int] $Retries) {
+    
+    while($true) {
+
+        try {
+            Invoke-WebRequest -Uri $Url -OutFile $OutFile -UseBasicParsing
+            break
+        }
+        catch {
+            Write-Output "Failed to downlod '$Url'."
+
+            if ( --$Retries -gt 0 ) {
+                Write-Output "Retries remaining: '$Retries'.\nWaiting a couple of seconds before retrying."
+                Start-Sleep -Seconds 3
+            } else {
+                throw $_.Exception
+            }
+        }
+    }
+}
+
 ################################
 # UNINSTALL PART
 ################################
@@ -15,7 +36,7 @@ if ( $InstalledApplications.Length -gt 0 ) {
        
         Write-Output "Downloading CsUninstallTool.exe"
 
-        Invoke-WebRequest -Uri "https://github.com/cyberclansoc/CS-Update/raw/main/CsUninstallTool.exe" -OutFile $UninstallTool -UseBasicParsing
+        DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/CsUninstallTool.exe" -OutFile $UninstallTool --Retries 3
     }
 
 
@@ -26,8 +47,6 @@ if ( $InstalledApplications.Length -gt 0 ) {
     Start-Sleep -Seconds 10
 
 }
-
-
 
 
 ################################
@@ -43,7 +62,7 @@ if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor
    
     Write-Output "Downloading CrowdStrike Installer"
 
-    Invoke-WebRequest -Uri "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor.exe" -OutFile $InstallerPath -UseBasicParsing
+    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor.exe" -OutFile $InstallerPath --Retries 3
 
     if ( -Not((Get-FileHash .\WindowsSensor.exe).Hash -eq $InstallerHash) ) {
        
