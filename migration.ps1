@@ -29,14 +29,14 @@ if ( $InstalledApplications.Length -gt 0 ) {
    
     Write-Output "Uninstalling CrowdStrike."
 
+    $UninstallHash = "E127F23DDA6F2C3F48E9D2AD55A9D245B3FE6E6E607ED2572A4DD2BE819A8235"
     $UninstallTool = ".\CsUninstallTool.exe"
-    Write-Output $UninstallTool
 
-    if ( -Not(Test-Path -Path $UninstallTool) ) {
+    if ( -Not(Test-Path -Path $UninstallTool) -or -Not((Get-FileHash $UninstallTool).Hash -eq $InstallerHash) ) {
        
         Write-Output "Downloading CsUninstallTool.exe"
 
-        DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/CsUninstallTool.exe" -OutFile $UninstallTool --Retries 3
+        DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/CsUninstallTool.exe" -OutFile $UninstallTool -Retries 3
     }
 
 
@@ -62,7 +62,7 @@ if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor
    
     Write-Output "Downloading CrowdStrike Installer"
 
-    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor.exe" -OutFile $InstallerPath --Retries 3
+    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor.exe" -OutFile $InstallerPath -Retries 3
 
     if ( -Not((Get-FileHash .\WindowsSensor.exe).Hash -eq $InstallerHash) ) {
        
