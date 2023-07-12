@@ -59,7 +59,7 @@ if ( $InstalledApplications.Length -gt 0 ) {
 # INSTALL PART
 ################################
 
-$InstallerHash = "05679b1f68cd43b711a24c1184794a0b490494d308ee055e970a12859c670ee1"
+$InstallerHash = "05679B1F68CD43B711A24C1184794A0B490494D308EE055E970A12859C670EE1"
 $InstallerPath = ".\WindowsSensor_EU.exe"
 $CIDFile = ".\cid.txt"
 
