@@ -4,3 +4,4 @@ WindowsSensor-Latest.exe filter=lfs diff=lfs merge=lfs -text
 WindowsSensor.exe filter=lfs diff=lfs merge=lfs -text
 =======
 >>>>>>> 1052065bbcf6ee98d79c77bf4398cc53c58c557c
+WindowsSensor_EU.exe filter=lfs diff=lfs merge=lfs -text
