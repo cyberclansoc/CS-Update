@@ -59,18 +59,18 @@ if ( $InstalledApplications.Length -gt 0 ) {
 # INSTALL PART
 ################################
 
-$InstallerHash = "F9BDB77FA69C7DEF39A136574E132F1F445A9035C4AB4D2514DD88E68F50A46D"
-$InstallerPath = ".\WindowsSensor-EU.exe"
+$InstallerHash = "05679b1f68cd43b711a24c1184794a0b490494d308ee055e970a12859c670ee1"
+$InstallerPath = ".\WindowsSensor_EU.exe"
 $CIDFile = ".\cid.txt"
 
 
-if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor-EU.exe).Hash -eq $InstallerHash) ) {
+if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor_EU.exe).Hash -eq $InstallerHash) ) {
    
     Write-Output "Downloading CrowdStrike Installer"
 
-    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor-EU.exe" -OutFile $InstallerPath -Retries 3
+    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor_EU.exe" -OutFile $InstallerPath -Retries 3
 
-    if ( -Not((Get-FileHash .\WindowsSensor-EU.exe).Hash -eq $InstallerHash) ) {
+    if ( -Not((Get-FileHash .\WindowsSensor_EU.exe).Hash -eq $InstallerHash) ) {
        
         throw "Downloaded installer doesn't match expected SHA256 checksum."
     }
