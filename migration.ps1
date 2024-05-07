@@ -53,7 +53,7 @@ if ( $InstalledApplications.Length -gt 0 ) {
 # INSTALL PART
 ################################
 
-$InstallerHash = "F2D0AB25DE019B14601830F3FA5D4F1EB8B1F898280424B79F125691BD4D93DB"
+$InstallerHash = "1C79E9C0B5D7CEBB189E3353698540556BBACFF7AF5BAD5139280D126A30DD03"
 $InstallerPath = ".\WindowsSensor.exe"
 $CIDFile = ".\cid.txt"
 
@@ -62,7 +62,7 @@ if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor
    
     Write-Output "Downloading CrowdStrike Installer"
 
-    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor.exe" -OutFile $InstallerPath -Retries 3
+    DownloadWithRetry -Url "https://github.com/cyberclansoc/CS-Update/raw/main/WindowsSensor-update.exe" -OutFile $InstallerPath -Retries 3
 
     if ( -Not((Get-FileHash .\WindowsSensor.exe).Hash -eq $InstallerHash) ) {
        
