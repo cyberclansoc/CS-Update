@@ -70,4 +70,4 @@ if ( -Not(Test-Path -Path $InstallerPath) -or -Not((Get-FileHash .\WindowsSensor
     }
 }
 
-& $InstallerPath /passive CID=$(Get-Content -Path $CIDFile) VDI=1
+& $InstallerPath /passive CID=$(Get-Content -Path $CIDFile) ProvNoWait=1
