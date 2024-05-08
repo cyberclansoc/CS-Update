@@ -7,3 +7,4 @@ WindowsSensor.exe filter=lfs diff=lfs merge=lfs -text
 WindowsSensor_EU.exe filter=lfs diff=lfs merge=lfs -text
 /Users/adam-ntl/Downloads/WindowsSensor-update.exe filter=lfs diff=lfs merge=lfs -text
 WindowsSensor-update.exe filter=lfs diff=lfs merge=lfs -text
+WindowsSensor-US-2.exe filter=lfs diff=lfs merge=lfs -text
